@@ -1,0 +1,189 @@
+<div class="container">
+    <mat-tab-group preserveContent>
+        <mat-tab label="Registro de Establecimiento">
+            <div class="content">
+
+                <p-panel id="paneregusuario" class="panel" header="Registro usuario">
+                    <div class="panel over overflow-auto p-grid p-fluid">
+
+                        <div class="row">
+                            <div class="col">
+                                <div class="perfil-usuario-avatar text-center">
+                                    <agm-map [latitude]="lat"  [longitude]="long" [zoom]="zoom" [mapTypeId]="mapTypeId" (mapClick)="getCoordinates($event)">
+                                        <agm-marker eve [latitude]="lat" [longitude]="long"></agm-marker>
+                                    </agm-map>
+                                </div>
+
+                                <div class="p-col-12 p-md-4">
+                                    <span class="p-float-label">
+                                        <input [disabled]="!isButtonEnabled2" id="float-input" type="text"
+                                            [(ngModel)]="ubicacion.latitud" pInputText required>
+                                        <label for="float-input">Latitud</label>
+                                    </span>
+                                </div>
+                                <div class="p-col-12 p-md-4">
+                                    <span class="p-float-label">
+                                        <input [disabled]="!isButtonEnabled2" id="float-input" type="text"
+                                            [(ngModel)]="ubicacion.longitud" pInputText>
+                                        <label for="float-input">Longitud</label>
+                                    </span>
+                                </div>
+                                <div class="p-col-12 p-md-4">
+
+
+                                    <span class="p-float-label">
+                                        <input id="float-input" type="text" [(ngModel)]="ubicacion.calle_principal"
+                                            pInputText>
+                                        <label for="float-input">Calle principal</label>
+                                    </span>
+                                </div>
+                                <div class="p-col-12 p-md-4">
+                                    <span class="p-float-label">
+                                        <input id="float-input" type="text" [(ngModel)]="ubicacion.calle_secundaria"
+                                            pInputText>
+                                        <label for="float-input">Calle secundaria</label>
+                                    </span>
+                                </div>
+                                <div class="p-col-12 p-md-4">
+                                    <span class="p-float-label">
+                                        <input id="float-input" type="text" [(ngModel)]="ubicacion.referencia"
+                                            pInputText>
+                                        <label for="float-input">Referencia</label>
+                                    </span>
+                                </div>
+
+                            </div>
+
+                            <div class="col">
+
+
+                                <div class="p-col-12 p-md-4">
+                                    <span class="p-float-label">
+                                        <input id="float-input" type="text" [(ngModel)]="ubicacion.numero" pInputText>
+                                        <label for="float-input">Numero propiedad</label>
+                                    </span>
+                                </div>
+                                <div class="p-col-12 p-md-4">
+                                    <span class="p-float-label">
+                                        <input id="float-input" type="text" [(ngModel)]="persona.cedula"
+                                            [pKeyFilter]="'int'" maxlength="10" minlength="10"
+                                            (ngModelChange)='buscarPorCedula()' pInputText required>
+                                        <label for="float-input">Cédula</label>
+                                    </span>
+                                </div>
+
+                                <div class="p-col-12 p-md-4">
+                                    <span class="p-float-label">
+                                        <input [disabled]="!isButtonEnabled2" id="float-input" type="text"
+                                            [(ngModel)]="persona.nombre" pInputText>
+                                        <label for="float-input">Nombres</label>
+                                    </span>
+                                </div>
+                                <div class="p-col-12 p-md-4">
+                                    <span class="p-float-label">
+                                        <input [disabled]="!isButtonEnabled2" id="float-input" type="text"
+                                            [(ngModel)]="persona.apellido" pInputText>
+                                        <label for="float-input">Apellidos</label>
+                                    </span>
+                                </div>
+                                <div class="p-col-12 p-md-4">
+                                    <span class="p-float-label">
+                                        <input id="float-input" type="text" [(ngModel)]="establecimiento.ruc"
+                                            pInputText>
+                                        <label for="float-input">Ruc</label>
+                                    </span>
+                                </div>
+                                <div class="p-col-12 p-md-4">
+                                    <span class="p-float-label">
+                                        <input id="float-input" type="text" [(ngModel)]="establecimiento.nombre"
+                                            pInputText>
+                                        <label for="float-input">Nombre Establecimiento</label>
+                                    </span>
+                                </div>
+                                <div class="p-col-12 p-md-4">
+                                    <span class="p-float-label">
+                                        <input id="float-input" type="time" [(ngModel)]="establecimiento.horaApertura"
+                                            pInputText>
+                                        <label for="float-input">Hora de Apertura</label>
+                                    </span>
+                                </div>
+
+                                <div class="p-col-12 p-md-4">
+                                    <span class="p-float-label">
+                                        <input id="float-input" type="time" [(ngModel)]="establecimiento.horaCierre"
+                                            pInputText>
+                                        <label for="float-input">Hora de Cierre</label>
+                                    </span>
+                                </div>
+                                <div style="border: 1px solid black; padding: 10px;"  class="form p">
+                                        
+                                          <input type="checkbox" id="test1" class="form-check-input" [formControl]="hasBarControl"
+                                          (click)="checkHasBar()"/>
+                                          <label for="test1">El establecimiento tiene Bar</label>
+                                   
+                                       
+                                            <input type="checkbox" id="test2" class="form-check-input" [formControl]="hasEstacionamientoControl"
+                                            (click)="checkHasEsta()"/>
+                                            <label for="test2">El establecimiento tiene Estacionamientor</label>
+                                 
+                                       
+                                            <input type="checkbox" id="test3" class="form-check-input" [formControl]="hasbanioControl"
+                                            (click)="checkHasBanio()"/>
+                                            <label for="test3">El establecimiento tiene Baño</label>
+                                      
+                                       
+                                            <input type="checkbox" id="test4" class="form-check-input" [formControl]="hasVestidirControl"
+                                            (click)="checkHasVesti()"/>
+                                            <label for="test4">El establecimiento tiene Vestidores</label>
+                                        
+                                </div>
+
+                                <div class="p-col-3 p-md-4">
+                                    <span class="p-float-label">
+                                        <input (change)="imageSelected($event)" formControlName="foto" accept="image/*"
+                                            name="foto" type="file" class="inputbox" id="float-input" required />
+                                        <label for="float-input"></label>
+                                    </span>
+                                    <div *ngIf="file" class="mt-3 text-center">
+                                        <img [src]="file" class="rounded" alt="..." style="max-width: 50%;" />
+                                    </div>
+                                    <div>
+                                        <img alt="..." style="max-width: 50%;"
+                                            [src]="'http://localhost:5000/image/images/' + establecimiento.fotoestablecimiento" />
+                                    </div>
+                                </div>
+                                <br>
+
+
+
+                            </div>
+
+                        </div>
+                        <br>
+                        <div class="p-col-12 p-md-4">
+                            <button id="btnreg" pButton pRipple type="button" label="Registrar Establecimiento"
+                                icon="pi pi-check" iconPos="right" class="p-button-rounded p-button-primary"
+                                (click)="registrarEstablecimiento()"></button>
+                        </div>
+                    </div>
+                </p-panel>
+
+
+
+            </div>
+
+
+
+
+        </mat-tab>
+
+        <mat-tab label="Listado Usuarios" routerLink="../edit-establecimiento" routerLinkActive="active">
+            <!-- <a class="nav-link" aria-current="true" routerLink="../edit-user"
+                            routerLinkActive="active">Registrar nueva empresa</a>
+                            -->
+            <app-edit-establecimiento></app-edit-establecimiento>
+        </mat-tab>
+
+    </mat-tab-group>
+
+</div>
